@@ -1,0 +1,23 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+        <h1 class="title">Create New Account</h1>
+        <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
+    </ion-header-bar>
+    <ion-content class="padding">
+        <div class="list">
+            <label class="item item-input item-floating-label">
+                <input type="text" placeholder="Nome" ng-model="user.nome">
+            </label>
+            <label class="item item-input item-floating-label">
+                <input type="text" placeholder="Cognome" ng-model="user.cognome">
+            </label>
+            <label class="item item-input item-floating-label">
+                <input type="text" placeholder="E-mail" ng-model="user.email">
+            </label>
+            <label class="item item-input item-floating-label">
+                <input type="password" placeholder="Password" ng-model="user.password">
+            </label>
+            <button class="button button-full button-positive" ng-click="signUp(user)">Create</button>
+        </div>
+    </ion-content>
+</ion-modal-view>

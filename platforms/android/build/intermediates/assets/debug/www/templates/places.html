@@ -1,0 +1,44 @@
+<ion-view title="GonDo">
+    <ion-content >
+        <!--<div style="height: 64px;"></div>-->
+        <div class="padding">
+        <button class="button button-block" ng-class="{'button-balanced': !tourOn, 'button-assertive': tourOn}" ng-click="toggleTour()">
+            {{tourstartstop}}
+        </button>
+        </div>
+        <div class="list card" ng-repeat="p in points">
+            <div class="item item-avatar">
+                <img ng-src="{{p.image1}}">
+                <h2>{{p.nome}}</h2>
+                <p>{{p.dist}}, {{p.time}}</p>
+            </div>
+
+            <div class="item item-body">
+                <img class="full-image" ng-src="{{p.image2}}">
+                <p>{{p.description}}</p>
+
+            </div>
+
+            <div class="item tabs  tabs-stable tabs-icon-left">
+                <a class="tab-item" href="#">
+                    <i class="icon ion-ios-information-outline"></i>
+                    Info
+                </a>
+                <a class="tab-item" href="#">
+                    <i class="icon ion-star"></i>
+                    Vota
+                </a>
+                <a class="tab-item" href="#">
+                    <i class="icon ion-navigate"></i>
+                    Direzioni
+                </a>
+            </div>
+
+        </div>
+
+        <!--<div style="height: 49px;"></div>-->
+    </ion-content>
+
+    
+       
+</ion-view>

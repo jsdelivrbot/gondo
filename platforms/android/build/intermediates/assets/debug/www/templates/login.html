@@ -1,0 +1,27 @@
+<ion-view view-title="Gondo" > 
+	<ion-nav-bar class="bar-positive" align-title="center">
+
+    </ion-nav-bar>
+	<ion-content class="padding">
+		<div class="list">
+			<label class="item item-input item-floating-label">
+				<input type="text" placeholder="E-mail" ng-model="user.email">
+			</label>
+			<label class="item item-input item-floating-label">
+				<input type="password" placeholder="Password" ng-model="user.password">
+			</label>
+		</div>
+		<button class="button button-block button-outline button-positive" ng-click="signIn(user)">
+	  		Login
+		</button>
+		<button class="button button-block button-outline button-positive" ng-click="createAccount()">
+	  		Crea nuovo Account
+		</button>
+		<button class="button button-block icon-left ion-social-googleplus button-assertive" ng-click="signUpGoogle()">
+	  		Accedi con Google
+		</button>
+		<button class="button button-block icon-left ion-social-facebook button-positive" ng-click="loginFacebook()">
+	  		Accedi con Facebook
+		</button>
+	</ion-content>
+</ion-view>

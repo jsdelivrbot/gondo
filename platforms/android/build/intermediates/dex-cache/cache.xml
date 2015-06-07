@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/nicolo/gondo/platforms/android/build/intermediates/exploded-aar/android.com.phonegap.plugins.facebookconnect/gondo739824-FacebookLib/unspecified/debug/libs/android-support-v4.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="efec67655f6db90757faa37201efcee2a9ec3507">
+        <dex dex="/home/nicolo/gondo/platforms/android/build/intermediates/pre-dexed/debug/android-support-v4-613a93365bc6bfc1684b39f44fde5c06a6f6c864.jar" />
+    </item>
+    <item
+        jar="/home/nicolo/gondo/platforms/android/build/intermediates/exploded-aar/android.com.phonegap.plugins.facebookconnect/gondo739824-FacebookLib/unspecified/debug/libs/bolts-android-1.1.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="91c20388c9a45f62b5ed8fe0502bb76ff6251fc7">
+        <dex dex="/home/nicolo/gondo/platforms/android/build/intermediates/pre-dexed/debug/bolts-android-1.1.2-449caf6d12693ca1ab212e60f0e04ddcf3c11dd1.jar" />
+    </item>
+    <item
+        jar="/home/nicolo/gondo/platforms/android/build/intermediates/exploded-aar/android/CordovaLib/unspecified/debug/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d93a7857295342b2827d301131a2ac60ed1bf496">
+        <dex dex="/home/nicolo/gondo/platforms/android/build/intermediates/pre-dexed/debug/classes-49b2f7034d4a811fe257f4b3e2f4a86aa91a4c30.jar" />
+    </item>
+    <item
+        jar="/home/nicolo/gondo/platforms/android/build/intermediates/exploded-aar/android.com.phonegap.plugins.facebookconnect/gondo739824-FacebookLib/unspecified/debug/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="de695c0b76b88337a7d57987268ccb439289a37b">
+        <dex dex="/home/nicolo/gondo/platforms/android/build/intermediates/pre-dexed/debug/classes-d475a5eacdfdc2d900009bc9916356b173e5043b.jar" />
+    </item>
+
+</items>

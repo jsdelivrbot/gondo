@@ -1,0 +1,5 @@
+/home/nicolo/gondo/platforms/android/build/intermediates/classes/debug
+/home/nicolo/gondo/platforms/android/build/intermediates/pre-dexed/debug/bolts-android-1.1.2-449caf6d12693ca1ab212e60f0e04ddcf3c11dd1.jar
+/home/nicolo/gondo/platforms/android/build/intermediates/pre-dexed/debug/classes-49b2f7034d4a811fe257f4b3e2f4a86aa91a4c30.jar
+/home/nicolo/gondo/platforms/android/build/intermediates/pre-dexed/debug/classes-d475a5eacdfdc2d900009bc9916356b173e5043b.jar
+/home/nicolo/gondo/platforms/android/build/intermediates/pre-dexed/debug/android-support-v4-613a93365bc6bfc1684b39f44fde5c06a6f6c864.jar

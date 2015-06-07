@@ -1,0 +1,27 @@
+/* Empty. Add your own CSS if you like */
+#map {
+	height: 100%;
+}
+.scroll{height: 100%;}
+
+.profile-picture {
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	height: 44px;
+	width: 44px;
+	padding: 0px 0px 5px 5px;
+	display: inline-block;
+}
+
+.name-profile {
+	display: inline-block;;
+}
+
+.profile-header {
+	height: 90px;
+}
+
+.has-profile-header {
+	top: 90px;
+}
