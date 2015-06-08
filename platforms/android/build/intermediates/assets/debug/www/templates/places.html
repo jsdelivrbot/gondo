@@ -6,16 +6,17 @@
             {{tourstartstop}}
         </button>
         </div>
-        <div class="list card" ng-repeat="p in points">
+
+        <div class="list card" ng-repeat="p in places">
             <div class="item item-avatar">
-                <img ng-src="{{p.image1}}">
-                <h2>{{p.nome}}</h2>
-                <p>{{p.dist}}, {{p.time}}</p>
+                <img ng-src="{{p.icon}}">
+                <h2>{{p.name}}</h2>
+                <p>{{p.vicinity}}</p>
             </div>
 
             <div class="item item-body">
-                <img class="full-image" ng-src="{{p.image2}}">
-                <p>{{p.description}}</p>
+                <img class="full-image" ng-show="{{p.photos[0].length !== 0}}" ng-src="{{p.photos[0].getUrl({maxHeight: 150})}}">
+                <p ng-show="{{p.html_attributions.length !== 0}}">{{p.html_attributions}}</p>
 
             </div>
 
@@ -35,7 +36,7 @@
             </div>
 
         </div>
-
+    <div id="places" data-tap-disabled="true"></div>
         <!--<div style="height: 49px;"></div>-->
     </ion-content>
 

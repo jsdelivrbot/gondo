@@ -14,7 +14,30 @@ angular.module('gondoApp.controllers',[])
         
           $scope.user = $rootScope.user;
 
-          Points.getAll().success(function(data){
+          var service = new google.maps.places.PlacesService(document.getElementById("places"));
+          var request = {
+		    location: myLatlng,
+		    radius: 1000,
+		    types: ['art_gallery', 'church', 'museum', 'university', 'place_of_worship', 'park', 'restaurant']
+		  };
+
+          service.nearbySearch(request, callbackNearby)
+
+          function callbackNearby(results, status) {
+		  if (status == google.maps.places.PlacesServiceStatus.OK) {
+
+	      	
+
+		    for (var i = 0; i < results.length; i++) {
+		      console.log(results[i]);
+
+		    }
+		    $scope.places = results;
+		    $ionicLoading.hide();
+		  }
+		}
+
+          /*Points.getAll().success(function(data){
             $scope.points=data.results; 
           }).then(
             function() {
@@ -57,7 +80,7 @@ angular.module('gondoApp.controllers',[])
                 }
               });
             }
-          }
+          }*/
 
 
           
