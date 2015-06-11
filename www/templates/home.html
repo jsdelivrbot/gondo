@@ -1,0 +1,30 @@
+<ion-view title="GonDo">
+    <ion-content >
+        <div class="padding">
+            <div class="row">
+                <div class="col">
+                    <button class="button button-block icon-left" 
+                            ng-class="{'button-balanced': !tourOn, 'button-energized': tourOn}" 
+                            ng-click="toggleTour()">
+                        <span class="padding">{{tourstartpause}}</span>
+                        <i class="icon" ng-class="icontour"></i>
+                    </button>
+                </div>
+                <div class="col">
+                    <button class="button button-block button-assertive"
+                            ng-disabled="!tourOn"
+                            ng-click="toggleTour()">
+                        <span class="padding">Stop Tour</span>
+                        <i class="icon ion-stop"></i>
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+
+        
+    </ion-content>
+
+    
+       
+</ion-view>

@@ -128,11 +128,21 @@ angular.module('gondoApp', ['ionic', 'firebase','gondoApp.controllers','gondoApp
       url: "/home",
       views: {
         'home-tab': {
-          templateUrl: "templates/places.html",
+          templateUrl: "templates/home.html",
           controller: 'HomeCtrl'
         }
       }
     })
+    .state('tabs.places', {
+      url: "/places",
+      views: {
+        'places-tab': {
+          templateUrl: "templates/places.html",
+          controller: 'PlacesCtrl'
+        }
+      }
+    })
+    
     .state('tabs.map', {
       url: "/map",
       views: {
@@ -141,6 +151,19 @@ angular.module('gondoApp', ['ionic', 'firebase','gondoApp.controllers','gondoApp
           controller: 'MapCtrl'
         }
       }
+    }).state('tabs.details', {
+      url: "/:placeId",
+      views: {
+        'places-tab': {
+          templateUrl: "templates/details.html",
+          controller: 'DetailsCtrl'
+        }
+      },
+      resolve:{
+        placeId: ['$stateParams', function($stateParams){
+          return $stateParams.placeId;
+        }]
+     }
     });
   $urlRouterProvider.otherwise("/tab/home");
  

@@ -5,22 +5,29 @@ navigation history that also transitions its views in and out.
 -->
 <ion-side-menus>
 
-    <ion-pane ion-side-menu-content>
+    <ion-pane ion-side-menu-content drag-content="false">
         <ion-nav-bar class="bar-positive">
             <ion-nav-buttons side="left">
                 <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
             </ion-nav-buttons>
+            <ion-nav-back-button class="button-clear">
+    <i class="ion-arrow-left-c"></i> Back
+  </ion-nav-back-button>
         </ion-nav-bar>
         <ion-nav-buttons side="left">
             <button class="button button-icon button-clear ion-navicon" ng-click="openMenu()"></button>
         </ion-nav-buttons>
         <ion-tabs class="tabs-icon-top tabs-positive">
 
-            <ion-tab title="Home" icon="ion-home" href="#/tab/home">
+            <ion-tab title="Home" icon="ion-home" ui-sref="tabs.home">
                 <ion-nav-view name="home-tab"></ion-nav-view>
             </ion-tab>
 
-            <ion-tab title="Mappa" icon="ion-ios-location" href="#/tab/map">
+            <ion-tab title="Places" icon="ion-ios-list-outline"ui-sref="tabs.places">
+                <ion-nav-view name="places-tab"></ion-nav-view>
+            </ion-tab>
+
+            <ion-tab title="Map" icon="ion-ios-location" ui-sref="tabs.map">
                 <ion-nav-view name="map-tab"></ion-nav-view>
             </ion-tab>
 

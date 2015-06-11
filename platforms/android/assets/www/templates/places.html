@@ -1,42 +1,25 @@
-<ion-view title="GonDo">
+<ion-view title="Places" cache-view="false">
     <ion-content >
+        <div class="divider item item-divider text-center">
+            Places near you
+        </div>
         <!--<div style="height: 64px;"></div>-->
-        <div class="padding">
-        <button class="button button-block" ng-class="{'button-balanced': !tourOn, 'button-assertive': tourOn}" ng-click="toggleTour()">
-            {{tourstartstop}}
-        </button>
-        </div>
-
-        <div class="list card" ng-repeat="p in places">
-            <div class="item item-avatar">
-                <img ng-src="{{p.icon}}">
+        <div class="list">
+            <a  class="item item-thumbnail-left" ng-repeat="p in places" 
+                ui-sref="tabs.details({placeId: p.place_id})">
+                <img ng-src="{{p.image}}">
                 <h2>{{p.name}}</h2>
-                <p>{{p.vicinity}}</p>
-            </div>
+                <p>
+                    <b>Address:</b>{{p.vicinity}} <br />
+                    <b>Category:</b> {{p.types[0]}} <br />
+                    <span ng-show="{{p.rating}}"><b>Rating:</b> {{p.rating}} / 5 <br /></span>
+                    <i class="icon ion-chevron-right details-icon"></i>
+                </p>
 
-            <div class="item item-body">
-                <img class="full-image" ng-show="{{p.photos[0].length !== 0}}" ng-src="{{p.photos[0].getUrl({maxHeight: 150})}}">
-                <p ng-show="{{p.html_attributions.length !== 0}}">{{p.html_attributions}}</p>
-
-            </div>
-
-            <div class="item tabs  tabs-stable tabs-icon-left">
-                <a class="tab-item" href="#">
-                    <i class="icon ion-ios-information-outline"></i>
-                    Info
-                </a>
-                <a class="tab-item" href="#">
-                    <i class="icon ion-star"></i>
-                    Vota
-                </a>
-                <a class="tab-item" href="#">
-                    <i class="icon ion-navigate"></i>
-                    Direzioni
-                </a>
-            </div>
-
+            </a>
         </div>
-    <div id="places" data-tap-disabled="true"></div>
+       
+        <div id="places" data-tap-disabled="true"></div>
         <!--<div style="height: 49px;"></div>-->
     </ion-content>
 

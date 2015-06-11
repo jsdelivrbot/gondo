@@ -1,6 +1,41 @@
 angular.module('gondoApp.controllers',[])
-.controller('HomeCtrl',['$scope','Points', '$ionicLoading', '$compile', '$rootScope', 'BGgeolocation',
-	function($scope,Points,$ionicLoading, $compile, $rootScope, BGgeolocation){
+.controller('HomeCtrl',['$scope', '$ionicLoading', '$compile', '$rootScope', 'BGgeolocation',
+	function($scope, $ionicLoading, $compile, $rootScope, BGgeolocation){
+		function initialize1() {
+			navigator.geolocation.getCurrentPosition(function(pos) {
+
+	          	var myLatlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+	        
+	          	$scope.user = $rootScope.user;
+			}, function(error) {
+	          alert('Unable to get location: ' + error.message);
+	        });
+	    }
+
+	    ionic.Platform.ready(initialize1);
+
+	    $scope.tourstartpause = 'Start Tour';
+	    $scope.icontour = 'ion-play';
+		$scope.tourOn = false;
+
+		$scope.toggleTour = function() {
+			if(!$scope.tourOn) {
+				BGgeolocation.start();
+				$scope.tourstartpause = 'Pause Tour';
+				$scope.icontour = 'ion-pause';
+				$scope.tourOn = true;
+			} else {
+				BGgeolocation.stop();
+				$scope.tourstartpause = 'Start Tour';
+				$scope.icontour = 'ion-play';
+				$scope.tourOn = false;
+			}
+			
+		};
+
+}])
+.controller('PlacesCtrl',['$scope', '$rootScope', '$ionicLoading', '$compile', '$rootScope', 'BGgeolocation', 'places',
+	function($scope, $rootScope, $ionicLoading, $compile, $rootScope, BGgeolocation, places){
 
 
       function initialize() {
@@ -10,7 +45,8 @@ angular.module('gondoApp.controllers',[])
             template: '<ion-spinner icon="android"></ion-spinner>',
           });
 
-          var myLatlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+          /*var myLatlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+          var arena = new google.maps.LatLng(45.439466, 10.994152);
         
           $scope.user = $rootScope.user;
 
@@ -18,7 +54,8 @@ angular.module('gondoApp.controllers',[])
           var request = {
 		    location: myLatlng,
 		    radius: 1000,
-		    types: ['art_gallery', 'church', 'museum', 'university', 'place_of_worship', 'park', 'restaurant']
+		    types: ['art_gallery', 'church', 'museum', 'university', 'place_of_worship', 
+		    'park', 'restaurant', 'stadium', 'city_hall']
 		  };
 
           service.nearbySearch(request, callbackNearby)
@@ -27,61 +64,34 @@ angular.module('gondoApp.controllers',[])
 		  if (status == google.maps.places.PlacesServiceStatus.OK) {
 
 	      	
-
+		  	$scope.places = results;
 		    for (var i = 0; i < results.length; i++) {
 		      console.log(results[i]);
-
+		      if(!results[i].photos) {
+		      	$scope.places[i].image = results[i].icon;
+		      } else {
+		      	$scope.places[i].image = results[i].photos[0].getUrl({maxHeight: 150});
+		      }
 		    }
-		    $scope.places = results;
+		    
 		    $ionicLoading.hide();
 		  }
-		}
+		}*/
+		$rootScope.markers = [];
+		places.getPlacesNearby(pos).then(function() {
+			$rootScope.$apply();
+			for(var i = 0; i < $scope.places.length; i++) {
 
-          /*Points.getAll().success(function(data){
-            $scope.points=data.results; 
-          }).then(
-            function() {
-              $scope.destinations = [];
-              for(var i = 0; i < $scope.points.length; i++) {
-                $scope.destinations.push(new google.maps.LatLng($scope.points[i].loc.latitude, $scope.points[i].loc.longitude));
-              }
-            }
-
-
-          ).then(
-            function() {
-              var service = new google.maps.DistanceMatrixService();
-
-              service.getDistanceMatrix(
-                {
-                  origins: [myLatlng],
-                  destinations: $scope.destinations,
-                  travelMode: google.maps.TravelMode.WALKING,
-                  unitSystem: google.maps.UnitSystem.METRIC,
-                  avoidHighways: false,
-                  avoidTolls: false
-                }, callback);
-
-            }
-          ).then(function() {
-	      	$ionicLoading.hide();
-	      });
-
-          function callback(response, status) {
-            if (status != google.maps.DistanceMatrixStatus.OK) {
-              alert('Error was: ' + status);
-            } else {
-              var results = response.rows[0].elements;
-              console.log(response);
-              $scope.$apply(function() {
-              for(var i = 0; i < results.length; i++) {
-                  $scope.points[i].dist = results[i].distance.text;
-                  $scope.points[i].time = results[i].duration.text;
-                }
-              });
-            }
-          }*/
-
+				$rootScope.markers[i] = new google.maps.Marker({
+                  position: $scope.places[i].location,
+                  map: $rootScope.map,
+                  title: $scope.places[i].name
+                });
+                console.log($scope.markers[i]);
+			}
+			$ionicLoading.hide();
+		});
+		
 
           
         }, function(error) {
@@ -92,17 +102,17 @@ angular.module('gondoApp.controllers',[])
 
       ionic.Platform.ready(initialize);
 
-      $scope.tourstartstop = 'Inizia il Tour';
+      $scope.tourstartpause = 'Start Tour';
       $scope.tourOn = false;
       
       $scope.toggleTour = function() {
       	if(!$scope.tourOn) {
       		BGgeolocation.start();
-      		$scope.tourstartstop = 'Termina il Tour';
+      		$scope.tourstartstop = 'Pause Tour';
       		$scope.tourOn = true;
       	} else {
       		BGgeolocation.stop();
-      		$scope.tourstartstop = 'Inizia il Tour';
+      		$scope.tourstartstop = 'Start Tour';
       		$scope.tourOn = false;
       	}
       	
@@ -110,8 +120,57 @@ angular.module('gondoApp.controllers',[])
 
 
 }])
-.controller('MapCtrl',['$scope','Points', '$ionicLoading', '$compile', '$rootScope', 'User', 'Auth',
-	function($scope,Points,$ionicLoading, $compile, $rootScope, User, Auth){
+.controller('DetailsCtrl',['$scope', '$rootScope', '$ionicLoading', '$compile', '$rootScope', 'places', '$stateParams', '$ionicSlideBoxDelegate',
+	function($scope, $rootScope, $ionicLoading, $compile, $rootScope, places, $stateParams, $ionicSlideBoxDelegate){
+
+		$scope.place_id = $stateParams.placeId;
+
+      $scope.loading = $ionicLoading.show({
+        template: '<ion-spinner icon="android"></ion-spinner>',
+      });
+
+      var request = {
+		placeId: $scope.place_id
+	  };
+    
+      var service = new google.maps.places.PlacesService(document.getElementById("places"));
+
+      service.getDetails(request, callbackNearby)
+
+      function callbackNearby(result, status) {
+	  if (status == google.maps.places.PlacesServiceStatus.OK) {
+
+      	
+	  	$scope.place = result;
+	      console.log(result);
+	      $scope.hasImages = true;
+	      if(!result.photos) {
+	      	$scope.hasImages = false;
+	      	$scope.place.image = result.icon;
+	      } else {
+	      	
+	      	$scope.place.image = result.photos[0].getUrl({maxHeight: 500});
+	      }
+	    }
+	    
+	    $ionicLoading.hide();
+	    $ionicSlideBoxDelegate.enableSlide();
+	    $ionicSlideBoxDelegate.update();
+	  }
+
+	  $scope.showOpeningHours = false;
+	  $scope.toggleOpeningHours = function() {
+	  	$scope.showOpeningHours = !$scope.showOpeningHours;
+	  }
+	  $scope.slideHasChanged = function(index) {
+	    $scope.slideIndex = index;
+	  };
+		
+
+
+}])
+.controller('MapCtrl',['$scope', '$ionicLoading', '$compile', '$rootScope', 'User', 'Auth',
+	function($scope, $ionicLoading, $compile, $rootScope, User, Auth){
 
 
       function initialize() {
@@ -146,7 +205,7 @@ angular.module('gondoApp.controllers',[])
 
           $rootScope.me = marker;
 
-          Points.getAll().success(function(data){
+          /*Points.getAll().success(function(data){
             $scope.points=data.results; 
           }).then(
             function() {
@@ -195,7 +254,7 @@ angular.module('gondoApp.controllers',[])
                 }
               });
             }
-          }
+          }*/
 
           google.maps.event.addListener(marker, 'click', function() {
             infowindow.open(map,marker);

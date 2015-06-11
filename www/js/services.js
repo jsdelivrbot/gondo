@@ -120,6 +120,40 @@ angular.module('gondoApp.services',[]).factory('Points',['$http','PARSE_CREDENTI
       }
     }
 }])
+.factory('places',['$rootScope', '$q', function($rootScope, $q){
+
+  return {
+    getPlacesNearby:function(pos) {
+      var deferred = $q.defer();
+      var myLatlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+      var service = new google.maps.places.PlacesService(document.getElementById("places"));
+      var request = {
+        location: myLatlng,
+        radius: 1000,
+        types: ['art_gallery', 'church', 'museum', 'university', 'place_of_worship', 'park', 'restaurant', 'stadium']
+      };
+
+      service.nearbySearch(request, callbackNearby);
+
+      function callbackNearby(results, status) {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+          $rootScope.places = results;
+          for (var i = 0; i < results.length; i++) {
+            console.log(results[i]);
+            if(!results[i].photos) {
+              $rootScope.places[i].image = results[i].icon;
+            } else {
+              $rootScope.places[i].image = results[i].photos[0].getUrl({maxHeight: 150});
+            }
+          }
+        }
+        deferred.resolve();
+      }
+      return deferred.promise;
+    }
+  }
+
+}])
 .factory('User',['$firebaseAuth', '$firebaseObject', '$firebaseArray', function($firebaseAuth, $firebaseObject, $firebaseArray){
   return {
     get:function(){

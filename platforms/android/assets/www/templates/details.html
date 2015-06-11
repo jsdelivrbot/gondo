@@ -1,0 +1,89 @@
+<ion-view view-title="Details"> 
+ 
+    <ion-content >
+
+
+    <div class="list card">
+
+
+	  <div class="item item-avatar">
+	    <img src="{{place.icon}}">
+	    <h2>{{place.name}}</h2>
+	    <p>{{place.vicinity}}</p>
+	  </div>
+
+	  <div class="item item-body">
+	    <!--<img ng-show="hasImages" class="full-image" ng-src="{{place.image}}">-->
+		<ion-slide-box>
+          <ion-slide ng-repeat="photo in place.photos">
+            <img class="full-image" ng-src="{{photo.getUrl({maxHeight: 500})}}">
+          </ion-slide>
+        </ion-slide-box>
+	  </div>
+
+
+	  <div class="item item-text-wrap">
+	    <div class="row details-row">
+
+		    <p class="col details-col">
+		      <a href="#" class="subdued"><b>Category: </b> {{place.types[0]}}</a>
+		    </p>
+
+		    <p class="col details-col" ng-show="place.opening_hours">
+		      <a href="#" class="subdued">
+		      	<i class="icon balanced ion-checkmark-circled" ng-show="place.opening_hours.open_now"></i>
+		      	<b ng-show="place.opening_hours.open_now"> Now open</b>
+		      	<i class="icon assertive ion-close-circled" ng-show="!place.opening_hours.open_now"></i>
+		      	<b ng-show="!place.opening_hours.open_now"> Not open now</b>
+		      </a>
+		    </p>
+
+	    </div>
+	    <p ng-show="place.rating">
+	      <a href="#" class="subdued"><b>Rating: </b> {{place.rating}} / 5</a>
+	    </p>
+
+	    <p ng-show="place.website">
+	      <a href="#" class="subdued"
+	      onclick="window.open('place.website', '_system', 'location=yes'); return false;">
+	      <b>Website: </b> {{place.website}}</a>
+	    </p>
+	    
+	    
+	  </div>
+	  <div class="list card" ng-show="place.opening_hours">
+
+		  <div class="item item-divider opening-hours" ng-click="toggleOpeningHours()">
+		  	<i class="icon ion-chevron-down" ng-show="!showOpeningHours"></i>
+		  	<i class="icon ion-chevron-up" ng-show="showOpeningHours"></i>
+		    <b> Opening Hours</b>
+		  </div>
+
+		  <a class="item item-accordion opening-hours" ng-show="showOpeningHours" 
+		  	ng-repeat="day in place.opening_hours.weekday_text" href="#">
+		    <small>{{day}}</small>
+		  </a>
+
+	  </div>
+
+	  <div class="item tabs tabs-secondary tabs-icon-left">
+	    <a class="tab-item" href="#">
+	      <i class="icon ion-thumbsup"></i>
+	      Like
+	    </a>
+	    <a class="tab-item" href="#">
+	      <i class="icon ion-chatbox"></i>
+	      Comment
+	    </a>
+	    <a class="tab-item" href="#">
+	      <i class="icon ion-share"></i>
+	      Share
+	    </a>
+	  </div>
+
+	</div>
+    </ion-content>
+    <div id="places" data-tap-disabled="true"></div>
+
+     
+</ion-view>
