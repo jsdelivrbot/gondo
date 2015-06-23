@@ -6,9 +6,10 @@ navigation history that also transitions its views in and out.
 <ion-side-menus>
 
     <ion-pane ion-side-menu-content drag-content="false">
-        <ion-nav-bar class="bar-positive">
+        <ion-nav-bar class="bar-calm-900">
             <ion-nav-buttons side="left">
-                <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+              <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+              </button>
             </ion-nav-buttons>
             <ion-nav-back-button class="button-clear">
     <i class="ion-arrow-left-c"></i> Back
@@ -17,7 +18,7 @@ navigation history that also transitions its views in and out.
         <ion-nav-buttons side="left">
             <button class="button button-icon button-clear ion-navicon" ng-click="openMenu()"></button>
         </ion-nav-buttons>
-        <ion-tabs class="tabs-icon-top tabs-positive">
+        <ion-tabs class="tabs-icon-top tabs-calm-900">
 
             <ion-tab title="Home" icon="ion-home" ui-sref="tabs.home">
                 <ion-nav-view name="home-tab"></ion-nav-view>
@@ -35,11 +36,11 @@ navigation history that also transitions its views in and out.
     </ion-pane>
 
     <ion-side-menu side="left">
-        <ion-header-bar class="bar bar-header bar-positive profile-header">
-            <img ng-src="{{user.picture}}" class="profile-picture" />
-            <h2 class="title name-profile">{{user.nome}} {{user.cognome}}</h2>
+        <ion-header-bar class="bar expanded bar-energized">
+            <img ng-src="{{user.picture}}" class="avatar motion spin fade" />
+            <div class="menu-bottom">{{user.nome}} {{user.cognome}}</div>
         </ion-header-bar>
-        <ion-content class="has-profile-header">
+        <ion-content class="has-expanded-header">
             <ion-list>
                 <ion-item href ng-click="logout()" class="item item-icon-left" menu-close>
                     <i class="icon ion-log-out"></i>

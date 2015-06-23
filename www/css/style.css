@@ -4,6 +4,37 @@
 }
 .scroll{height: 100%;}
 
+ion-side-menu {
+	font-weight: bold;
+}
+
+/*.bar {
+	height: 55px;
+	line-height: 55px;
+	font-weight: bold;
+}*/
+
+.text-home:after {
+	content: '\A';
+  	white-space: pre;
+}
+.text-home {
+	width: 100%;
+}
+
+.icon-home {
+	/*display: block;
+	word-break: break-all;
+	width: 100%;
+	white-space: normal;*/
+	width: 100%;
+}
+
+.button .icon-home:before {
+	width: 100%;
+	font-size: 50px !important;
+}
+
 .profile-picture {
 	border-radius: 50%;
 	-webkit-border-radius: 50%;
@@ -95,11 +126,12 @@ p.details-col:last-child {
 	margin: 5%;
 	height: 90%;
 	width: 90%;
-	border: 10px solid black;
+	/*border: 10px solid black;*/
 	border-radius: 10px;
 	display: flex;
 	justify-content: center; /* align horizontal */
 	align-items: center; /* align vertical */	
+	font-weight: bold;
 }
 #one{float:right ;}
 #two{float:left; }
@@ -108,18 +140,24 @@ p.details-col:last-child {
 
 .container-gondo {
 	position: absolute;
-	top:25%;
-	left: 24%;
+	left: 50%;
+  	margin-left: -100px;
+  	top: 50%;
+  	margin-top: -100px;
     background-color: transparent;
     z-index: 100;
+    width: 200px;
+    height: 200px;
 }
 
 .container-gondo > div {
+	width: 200px;
+	height: 200px;
 	background-color: transparent;
 }
 
 .button-gondo {
 	border-radius: 50%;	
 	text-align: center;
-	background-color: white;
+	/*background-color: white;*/
 }
