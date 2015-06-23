@@ -1,0 +1,28 @@
+<ion-view title="Places" cache-view="false">
+    <ion-content >
+        <div class="divider item item-divider text-center">
+            Places near you
+        </div>
+        <!--<div style="height: 64px;"></div>-->
+        <div class="list">
+            <a  class="item item-thumbnail-left" ng-repeat="p in places" 
+                ui-sref="tabs.details({placeId: p.place_id})">
+                <img ng-src="{{p.image}}">
+                <h2>{{p.name}}</h2>
+                <p>
+                    <b>Address:</b>{{p.vicinity}} <br />
+                    <b>Category:</b> {{p.types[0]}} <br />
+                    <span ng-show="{{p.rating}}"><b>Rating:</b> {{p.rating}} / 5 <br /></span>
+                    <i class="icon ion-chevron-right details-icon"></i>
+                </p>
+
+            </a>
+        </div>
+       
+        <div id="places" data-tap-disabled="true"></div>
+        <!--<div style="height: 49px;"></div>-->
+    </ion-content>
+
+    
+       
+</ion-view>

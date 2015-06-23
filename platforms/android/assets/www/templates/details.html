@@ -12,7 +12,7 @@
 	    <p>{{place.vicinity}}</p>
 	  </div>
 
-	  <div class="item item-body">
+	  <div class="item item-body" ng-show="hasImages">
 	    <!--<img ng-show="hasImages" class="full-image" ng-src="{{place.image}}">-->
 		<ion-slide-box>
           <ion-slide ng-repeat="photo in place.photos">
@@ -43,14 +43,15 @@
 	      <a href="#" class="subdued"><b>Rating: </b> {{place.rating}} / 5</a>
 	    </p>
 
-	    <p ng-show="place.website">
-	      <a href="#" class="subdued"
-	      onclick="window.open('place.website', '_system', 'location=yes'); return false;">
-	      <b>Website: </b> {{place.website}}</a>
-	    </p>
+	    	
 	    
 	    
 	  </div>
+	  <div class="item item-text-wrap">
+	  <button ng-show="place.website" class="button button-block button-stable" onclick="window.open('{{place.website}}', '_system', 'location=yes'); return false;">
+	    		<b>Website</b>
+	    	</button>
+	    	</div>
 	  <div class="list card" ng-show="place.opening_hours">
 
 		  <div class="item item-divider opening-hours" ng-click="toggleOpeningHours()">

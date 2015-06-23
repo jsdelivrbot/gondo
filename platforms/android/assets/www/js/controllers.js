@@ -83,12 +83,13 @@ angular.module('gondoApp.controllers',[])
 			for(var i = 0; i < $scope.places.length; i++) {
 
 				$rootScope.markers[i] = new google.maps.Marker({
-                  position: $scope.places[i].location,
-                  map: $rootScope.map,
+                  position: new google.maps.LatLng($scope.places[i].geometry.location.F, $scope.places[i].geometry.location.A),
+                  map: null,
                   title: $scope.places[i].name
                 });
                 console.log($scope.markers[i]);
 			}
+			$scope.$emit('places', $rootScope.Markers);
 			$ionicLoading.hide();
 		});
 		
@@ -291,6 +292,12 @@ angular.module('gondoApp.controllers',[])
       			}
       		}
       	}
+      	$scope.$on('places', function(event, args) {
+      		console.log('places on map');
+      		for(i = 0; i < $rootScope.places.length; i++) {
+      			$rootScope.markers.setMap($rootScope.map);
+      		}
+      	});
 	  });
       
       $scope.centerOnMe = function() {

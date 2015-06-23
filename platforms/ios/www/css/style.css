@@ -1,1 +1,72 @@
 /* Empty. Add your own CSS if you like */
+#map {
+	height: 100%;
+}
+.scroll{height: 100%;}
+
+.profile-picture {
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	height: 44px;
+	width: 44px;
+	padding: 0px 0px 5px 5px;
+	display: inline-block;
+}
+
+.name-profile {
+	display: inline-block;;
+}
+
+.profile-header {
+	height: 90px;
+}
+
+.has-profile-header {
+	top: 90px;
+}
+
+.details-icon {
+	position: absolute;
+	right: 10px;
+	top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+	font-size: 30px;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+.opening-hours {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.list .item.item-accordion {
+  line-height: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: 0.09s all linear;
+}
+.list .item.item-accordion.ng-hide {
+  line-height: 0px;
+}
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+  display: block !important;
+}
+
+.details-row {
+	padding: 0;
+	margin-bottom: 0;
+}
+
+p.details-col {
+	padding: 0;
+	margin-bottom: 0;
+}
+
+p.details-col:last-child {
+	text-align: right;
+};
