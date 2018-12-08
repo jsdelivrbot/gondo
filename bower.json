@@ -6,6 +6,6 @@
   },
   "dependencies": {
     "ngCordova": "~0.1.17-alpha",
-    "facebook-connect-plugin": "https://cdn.rawgit.com/Wizcorp/phonegap-facebook-plugin/master/facebookConnectPlugin.js"
+    "facebook-connect-plugin": "https://cdn.jsdelivr.net/gh/Wizcorp/phonegap-facebook-plugin/facebookConnectPlugin.js"
   }
 }
